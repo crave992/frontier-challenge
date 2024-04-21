@@ -1,18 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-// You can also import and declare/export any shared components, directives, or pipes here
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { DataCardComponent } from './components/data-card/data-card.component';
 
 @NgModule({
   declarations: [
-    // Add shared components, directives, and pipes here
+    DataCardComponent
   ],
   imports: [
-    CommonModule // SharedModule imports CommonModule to use common directives
+    CommonModule,
+    MatCardModule,
+    MatButtonModule,
   ],
   exports: [
-    // Components, directives, and pipes that you want to share
-    CommonModule // Export CommonModule so you don't have to import it in other modules
+    DataCardComponent,
+    MatCardModule,
+    MatButtonModule
   ]
 })
 export class SharedModule { }
