@@ -3,12 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { CommentData, Comment } from '../models/comments.model';
+import { environment } from '@environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommentsService {
-  private dataUrl = 'assets/data/comments/data.json'; // URL to data file
+  private dataUrl = environment.dataUrl; // URL to data file
   private localStorageKey = 'commentsData'; // LocalStorage key
 
   constructor(private http: HttpClient) { }
@@ -87,6 +88,32 @@ export class CommentsService {
     const commentsData = JSON.parse(localStorage.getItem(this.localStorageKey) || '{}');
     commentsData.comments = commentsData.comments.filter((c: Comment) => c.id !== id);
     localStorage.setItem(this.localStorageKey, JSON.stringify(commentsData));
+  }
+
+  updateCommentScore(id: number, increment: boolean): Observable<Comment | null> {
+    const commentsData = this.fetchCommentsData();
+    const comment = commentsData.comments.find(c => c.id === id);
+    if (comment) {
+        comment.score += increment ? 1 : -1;
+        this.saveCommentsData(commentsData);
+        return of(comment);
+    } else {
+        return of(null);  // Explicitly handling the possibility of not finding the comment
+    }
+  }
+
+  // Method to upvote or downvote a reply
+  updateReplyScore(replyId: number, increment: boolean): Observable<Comment | null> {
+    const commentsData = this.fetchCommentsData();
+    for (const comment of commentsData.comments) {
+      const reply = comment.replies?.find(r => r.id === replyId);
+      if (reply) {
+        reply.score += increment ? 1 : -1;
+        this.saveCommentsData(commentsData);
+        return of(reply);
+      }
+    }
+    return of(null); // Return null if no reply was found
   }
 
   // CRUD Operations for replies within a comment

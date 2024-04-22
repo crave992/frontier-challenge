@@ -7,6 +7,7 @@ html {
     height: 100%;
     margin: 0;
     font-family: 'Roboto', sans-serif;
+    background-color: #e8eaf6;
   }
 }
 
@@ -34,10 +35,13 @@ h6 {
   flex-direction: column;
   justify-content: space-between;
   gap: 20px; 
+  max-width: 700px;
+  margin: 0 auto;
 }
 
 .comment {
-  
+  flex-direction: row !important;
+  align-items: stretch;
   &-header{
     align-items: center;
     .mat-mdc-card-header-text {
@@ -52,4 +56,31 @@ h6 {
       }
     }
   }
+  &-score{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 30px;
+    button {
+      width: 30px!important;
+      height: 30px!important;
+      padding: 2px!important;
+      box-sizing: border-box;
+    }
+    .mat-icon {
+      width: 16px !important;
+      height: 16px !important;
+      line-height: 16px !important;
+    }
+    .material-icons {
+        font-size: 16px !important;
+    }
+  }
+}
+
+.replies {
+  padding: 0 0 0 15px;
+  border-left: 1px solid #d0d0d0;
+  margin: 20px 0 0px 15px;
 }

@@ -5,10 +5,11 @@ import { AppComponent } from './components/app/app.component';
 import { SharedModule } from '../shared/shared.module'; // Adjust the path as necessary
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RelativeTimePipe } from './pipes/relative-time.pipe';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     HttpClientModule,

@@ -6,7 +6,7 @@
     "paths": {
       "*": ["src/*"],
       "@core/*": ["src/app/core/*"],  // Adjust this according to your project structure
-      "environments/*": ["src/environments/*"]  // Specific path adjustment
+      "@environments/*": ["src/environments/*"]  // Specific path adjustment
     },
     "outDir": "./dist/out-tsc",
     "strict": true,

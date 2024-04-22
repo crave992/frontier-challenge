@@ -1,8 +1,11 @@
-<!-- Assuming 'comments' is an array of Comment objects available in the parent component -->
+<!-- src/app/components/home/home.component.html -->
 <div class="container">
   <div class="cards">
-    <div *ngFor="let comment of comments$ | async" class="">
-      <app-data-card [comment]="comment"></app-data-card>
+    <div *ngFor="let comment of comments$ | async">
+      <app-data-card [comment]="comment" (scoreUpdated)="handleScoreUpdated()"></app-data-card>
+      <div class="cards replies">
+        <app-data-card-reply *ngFor="let reply of comment.replies" [reply]="reply" (scoreUpdated)="handleReplyScoreUpdated()"></app-data-card-reply>
+      </div>
     </div>
   </div>
 </div>

@@ -1,0 +1,24 @@
+<!-- src/app/components/data-card-reply/data-card-reply.component.html -->
+<mat-card class="comment">
+  <div class="comment-score">
+    <button mat-icon-button (click)="updateScore(true)">
+      <mat-icon>add</mat-icon>
+    </button>
+    <span>{{ reply.score }}</span>
+    <button mat-icon-button (click)="updateScore(false)">
+      <mat-icon>remove</mat-icon>
+    </button>
+  </div>
+  <div class="comment-content">
+    <mat-card-header class="comment-header">
+      <div mat-card-avatar class="comment-header__avatar">
+        <img [src]="getAssetPath(reply.user.image.png)" alt="Avatar of {{ reply.user.username }}">
+      </div>
+      <mat-card-title class="comment-header__title">{{ reply.user.username }}</mat-card-title>
+      <mat-card-subtitle class="comment-header__subtitle">{{ reply.createdAt | relativeTime }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>{{ reply.content }}</p>
+    </mat-card-content>
+  </div>
+</mat-card>
